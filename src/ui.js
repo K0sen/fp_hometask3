@@ -1,12 +1,13 @@
 // const list = List([1,2,3,3]);
 const ul = document.querySelector('.books');
-const createBook = ({title, author, publishingHouse, tags}) => new Map({
+const form = document.querySelector('.add-book');
+const createBook = ({title, author, publishingHouse, tags, isRead = false}) => new Map({
   title,
   author,
   publishingHouse,
   tags,
-  date: new Date(),
-  isRead: false
+  isRead,
+  date: new Date()
 });
 
 const createLi = ({title}) => {
@@ -41,12 +42,26 @@ myList = List.of(createBook(book1), createBook(book2), createBook(book3));
 
 function renderBooks() {
   ul.innerHTML = '';
+  console.log(myList.toJS());
   myList.toJS().forEach(element => {
     const book = createLi(element);
     ul.appendChild(book);
   })
 }
 
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const formData = new FormData(e.target);
+  const book = {
+    title: formData.get('title'),
+    author: formData.get('author'),
+    publishingHouse: formData.get('publishing-house'),
+    tags: Set.of(...formData.get('tags').split(',')),
+    isRead: formData.get('is-read') !== null
+  }
+  myList = myList.push(book);
+  form.reset();
+})
 
 
 
