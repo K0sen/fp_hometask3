@@ -13,22 +13,26 @@
 <body>
     <div class="app">
         <div class="row">
-            <aside class="col-3 actions">
-                <button onclick="renderBooks()" class="btn btn-info">Render books</button>
-                <form class="add-book">
-                    <input type="text" placeholder="Title" name="title">
-                    <input type="text" placeholder="Author" name="author">
-                    <input type="text" placeholder="Publishing house" name="publishing-house">
-                    <input type="text" placeholder="Tags" name="tags">
-                    <br>
-                    <label><input type="checkbox" name="is-read"> Is read</label>
-                    <br>
-                    <button>Submit</button>
-                </form>
+            <aside class="col-2 actions">
+                <button onclick="renderBooks()" class="btn btn-info">Render all books</button>
+                <br>
+                <button onclick="openForm()" class="btn btn-success">Add a book</button>
             </aside>
-            <ul class="col-9 books"></ul>
+            <ul class="col-10 books row"></ul>
         </div>
     </div>
+    <div class="book-form-wrapper">
+        <form class="book-form form-group">
+            <input class="form-control" type="text" placeholder="Title" name="title">
+            <input class="form-control" type="text" placeholder="Author" name="author">
+            <input class="form-control" type="text" placeholder="Publishing house" name="publishing-house">
+            <input class="form-control" type="text" placeholder="Tags" name="tags">
+            <label><input type="checkbox" name="is-read"> Is read</label><br>
+            <button class="btn btn-success">Add</button>
+            <button onclick="closeForm()" type="button" class="btn btn-danger">Close</button>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/ramda@0.25/dist/ramda.min.js"></script>
     <script src="src/immutable.min.js"></script>
     <script src="src/scripts.js"></script>
     <script src="src/ui.js"></script>
